@@ -5,7 +5,7 @@ using ItemsDeDefensa;
 using LibroHechizo;
 
 
-namespace Mago
+namespace Magos
 {
         public class Mago
     {
@@ -48,7 +48,7 @@ namespace Mago
                 {
                     this.health = 100;
                 }
-                if(value < 0)
+                else if(value < 0)
                 {
                     this.health = 0;
                 }

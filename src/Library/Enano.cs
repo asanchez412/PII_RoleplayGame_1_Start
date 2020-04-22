@@ -2,8 +2,10 @@ using System;
 using System.Collections.Generic;
 using ItemsDeAtaque;
 using ItemsDeDefensa;
+using Magos;
+using Elfos;
 
-namespace Enano
+namespace Enanos
 
 {
     public class Enano
@@ -43,7 +45,7 @@ namespace Enano
                 {
                     this.Health = 100;
                 }
-                if (value < 0)
+                else if (value < 0)
                 {
                     this.Health = 0;
                 }
@@ -94,24 +96,77 @@ namespace Enano
         {
             this.deffEquip.Remove(itemDefensa);
         }
-        public double GetAttackValue()
+        public int GetAttackValue()
         {
-            double result = 0;
+            int result = 0;
 
             foreach (ItemAtaque itemOff in this.offEquip)
             {
                 result = result + itemOff.AttackValue;
             }
-            return result;
+            return result + this.Damage;
         }
-        public double GetDeffValue()
+        public int GetDeffValue()
         {
-            double result = 0;
+            int result = 0;
             foreach (ItemDefensa itemDeff in this.deffEquip)
             {
                 result = result + itemDeff.ArmorValue;
             }
-            return result;
+            return result + this.Armor;
+        }
+
+        public void AtacarEnano(Enano p1)
+        {
+            int damage = this.GetAttackValue();
+            int damageReceived = 0;
+
+            damageReceived = this.GetAttackValue() - p1.Armor;
+
+            if (damageReceived >= 0)
+            {
+                p1.Health = p1.Health - damageReceived;
+                Console.WriteLine("El jugador {0} recibe {1} puntos de daño", p1.Name, damageReceived);
+            }
+            else
+            {
+                Console.WriteLine("El jugador {0} no recibe daño.", p1.Name);
+            }
+        }
+        public void AtacarMago(Mago p1)
+        {
+            int damage = this.GetAttackValue();
+            int damageReceived = 0;
+
+            damageReceived = this.GetAttackValue() - p1.Armor;
+
+            if (damageReceived >= 0)
+            {
+                p1.Health = p1.Health - damageReceived;
+                Console.WriteLine("El jugador {0} recibe {1} puntos de daño", p1.Name, damageReceived);
+            }
+            else
+            {
+                Console.WriteLine("El jugador {0} no recibe daño.", p1.Name);
+            }
+        }
+        public void AtacarElfo(Elfo p1)
+        {
+            int damage = this.GetAttackValue();
+            int damageReceived = 0;
+
+            damageReceived = this.GetAttackValue() - p1.Armor;
+
+            if (damageReceived >= 0)
+            {
+                p1.Health = p1.Health - damageReceived;
+                Console.WriteLine("El jugador {0} recibe {1} puntos de daño", p1.Nickname, damageReceived);
+            }
+            else
+            {
+                Console.WriteLine("El jugador {0} no recibe daño.", p1.Nickname);
+            }
+
         }
     }
 }
