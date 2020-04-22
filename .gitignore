@@ -1,1 +1,4 @@
-.gitignore
+bin/
+obj/
+.vscode
+src/Library/obj/Debug/netstandard2.0/Library.AssemblyInfo.cs

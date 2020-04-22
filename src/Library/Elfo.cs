@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
-using ItemAtaque;
-using ItemDefensa;
+using ItemsDeAtaque;
+using ItemsDeDefensa;
 
-namespace Elfo
+namespace Elfos
 {
     public class Elfo
     {
