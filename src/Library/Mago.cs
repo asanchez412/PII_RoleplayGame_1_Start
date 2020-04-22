@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using ItemsDeAtaque;
 using ItemsDeDefensa;
 using LibroHechizo;
+using Enanos;
+using Elfos;
 
 
 namespace Magos
@@ -114,14 +116,29 @@ namespace Magos
         {
             this.equip.Remove(librodeHechizos);
         }
-        public double Value()
+        public int Value()
         {
-            double resultado = 0;
+            int resultado = 0;
             foreach (ItemDefensa itemD in this.dequip)
             {
                 resultado = resultado + itemD.ArmorValue;
             }
             return resultado;
+        }
+
+        public void CurarEnano(Enano p1)
+        {
+            Random valor = new Random();
+            int curar = valor.Next(1,15);
+            if (p1.Health > 0)
+            {
+                p1.Health = p1.Health + curar;
+                Console.WriteLine("Se cura {0} puntos al personaje {1}. Vida actual: {2}.", curar, p1.Name, p1.Health);
+            } 
+            else
+            {
+                Console.WriteLine("No se puede curar a un jugador muerto.");
+            }   
         }
     }
 }

@@ -157,7 +157,7 @@ namespace Enanos
 
             damageReceived = this.GetAttackValue() - p1.Armor;
 
-            if (damageReceived >= 0)
+            if (damageReceived > 0)
             {
                 p1.Health = p1.Health - damageReceived;
                 Console.WriteLine("El jugador {0} recibe {1} puntos de daño", p1.Nickname, damageReceived);
