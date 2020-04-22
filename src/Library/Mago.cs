@@ -123,9 +123,17 @@ namespace Magos
             {
                 resultado = resultado + itemD.ArmorValue;
             }
-            return resultado;
+            return resultado + this.Damage;
         }
-
+        public int GetDeffValue()
+        {
+            int result = 0;
+            foreach (ItemDefensa itemDeff in this.deffEquip)
+            {
+                result = result + itemDeff.ArmorValue;
+            }
+            return result + this.Armor;
+        }
         public void CurarEnano(Enano p1)
         {
             Random valor = new Random();
@@ -168,6 +176,54 @@ namespace Magos
             {
                 Console.WriteLine("No se puede curar a un jugador muerto.");
             }   
+        }
+        public void AtacarEnano(Enano p1, LibrodeHechizos libro)
+        {
+            int damageReceived = 0;
+
+            damageReceived = this.GetAttackValue()+libro.Damage - p1.Armor;
+
+            if (damageReceived >= 0)
+            {
+                p1.Health = p1.Health - damageReceived;
+                Console.WriteLine("El jugador {0} recibe {1} puntos de daño", p1.Name, damageReceived);
+            }
+            else
+            {
+                Console.WriteLine("El jugador {0} no recibe daño.", p1.Name);
+            }
+        }
+        public void AtacarMago(Mago p1, LibrodeHechizo libro)
+        {
+            int damageReceived = 0;
+
+            damageReceived = this.GetAttackValue()+libro.Damage - p1.Armor;
+
+            if (damageReceived >= 0)
+            {
+                p1.Health = p1.Health - damageReceived;
+                Console.WriteLine("El jugador {0} recibe {1} puntos de daño", p1.Name, damageReceived);
+            }
+            else
+            {
+                Console.WriteLine("El jugador {0} no recibe daño.", p1.Name);
+            }
+        }
+        public void AtacarElfo(Elfo p1, LibrodeHechizos libro)
+        {
+            int damageReceived = 0;
+
+            damageReceived = this.GetAttackValue()+libro.Damage - p1.Armor;
+
+            if (damageReceived > 0)
+            {
+                p1.Health = p1.Health - damageReceived;
+                Console.WriteLine("El jugador {0} recibe {1} puntos de daño", p1.Nickname, damageReceived);
+            }
+            else
+            {
+                Console.WriteLine("El jugador {0} no recibe daño.", p1.Nickname);
+            }
         }
     }
 }
