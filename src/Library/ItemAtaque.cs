@@ -1,6 +1,4 @@
-using System;
-
-namespace ItemAtaque
+namespace ItemsDeAtaque
 {
     class ItemAtaque
     {
