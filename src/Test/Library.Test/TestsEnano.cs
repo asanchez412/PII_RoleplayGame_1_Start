@@ -13,8 +13,10 @@ namespace TestsEnano
         [SetUp]
         public void Init()
         {
-            Enano p1 = new Enano("Jorginho",10,100,5);
-            Enano p2 = new Enano("Pepinho",8,100,6);
+            Enano p1 = new Enano("Jorginho", 100, 10, 5);
+            Enano p2 = new Enano("Pepinho", 100, 8, 6);
+            Mago p3 = new Mago("Dainamo", 100, 6, 3);
+            Elfo p4 = new Elfo("Pablinho", 100, 7, 5);
             ItemAtaque off1 = new ItemAtaque("Hacha","Hacha de dos mertros", 8);
             ItemAtaque off2 = new ItemAtaque("Espada","Espada de dos manos", 7);
             ItemAtaque off3 = new ItemAtaque("Cuchillo","Rápido y letal", 5);
@@ -25,6 +27,7 @@ namespace TestsEnano
             ItemDefensa deff5 = new ItemDefensa("Coraza de metal","Duradera", 3);
             ItemDefensa deff6 = new ItemDefensa("Coraza de metal de alta calidad","La mejor coraza", 7);
             ItemDefensa deff7 = new ItemDefensa("Pantalones de cuero","Ligeros", 3);
+
             p1.EquipOffEquip(off1);
             p1.EquipOffEquip(off3);
             p1.EquipDeffEquip(deff1);
@@ -35,6 +38,15 @@ namespace TestsEnano
             p2.EquipOffEquip(off2);
             p2.EquipDeffEquip(deff5);
 
+            LibrodeHechizos libro1 = new LibrodeHechizos("Rayos", 8);
+            p3.AddLibro(libro1);
+            p3.EquipOffEquip(off3);
+            p3.EquipDeffEquip(deff5);
+            p3.EquipDeffEquip(deff1);
+
+            p4.EquipOffEquip(off2);
+            p4.EquipDeffEquip(deff6);
+            p4.EquipDeffEquip(deff7);
         }
         [TestCase]
 
@@ -51,6 +63,14 @@ namespace TestsEnano
         public void IsAtacarEnanoRight()
         {
             Assert.AreEqual(p1.AtacarEnano(p2), $"El jugador {p2.Name} recibe 14 puntos de daño");
+        }
+        public void IsAtacarMagoRight()
+        {
+            Assert.AreEqual(p1.AtacarMago(p3), $"El jugador {p3.Name} recibe 12 puntos de daño");
+        }
+        public void IsAtacarElfoRight()
+        {
+            Assert.AreEqual(p1.AtacarElfo(p4), $"El jugador {p4.Nickname} recibe 8 puntos de daño");
         }
     }
 }

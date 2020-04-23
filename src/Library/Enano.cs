@@ -11,7 +11,7 @@ namespace Enanos
     public class Enano
     {
 
-        public Enano(string name, int damage, int health, int armor)
+        public Enano(string name, int health, int damage, int armor)
         {
             this.Name = name;
             this.Health = health;
