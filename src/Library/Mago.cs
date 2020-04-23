@@ -75,31 +75,50 @@ namespace Mago
                 }
             }
         }
-        private IList<ItemAtaque> equipt = new List<ItemAtaque>();
+                private IList<ItemAtaque> offEquip = new List<ItemAtaque>();
         private void AddStep(ItemAtaque itemAtaque)
         {
-            if (equipt.Count <= 2)
+            if (offEquip.Count <= 2)
             {
-                this.equipt.Add(itemAtaque);
+                this.offEquip.Add(itemAtaque);
             }
         }
 
         private void RemoveStep(ItemAtaque itemAtaque)
         {
-            this.equipt.Remove(itemAtaque);
+            this.offEquip.Remove(itemAtaque);
         }
-        private IList<ItemDefensa> dequip = new List<ItemDefensa>();
+        private IList<ItemDefensa> deffEquip = new List<ItemDefensa>();
         private void AddStep(ItemDefensa itemDefensa)
         {
-            if (dequip.Count <= 5)
+            if (deffEquip.Count <= 5)
             {
-                this.dequip.Add(itemDefensa);
+                this.deffEquip.Add(itemDefensa);
             }
         }
 
         private void RemoveStep(ItemDefensa itemDefensa)
         {
-            this.dequip.Remove(itemDefensa);
+            this.deffEquip.Remove(itemDefensa);
+        }
+        public int GetAttackValue()
+        {
+            int result = 0;
+
+            foreach (ItemAtaque itemOff in this.offEquip)
+            {
+                result = result + itemOff.AttackValue;
+            }
+            return result + this.Damage;
+        }
+        public int GetDeffValue()
+        {
+            int result = 0;
+            foreach (ItemDefensa itemDeff in this.deffEquip)
+            {
+                result = result + itemDeff.ArmorValue;
+            }
+            return result + this.Armor;
         }
 
         private IList<LibrodeHechizos> equip = new List<LibrodeHechizos>();
