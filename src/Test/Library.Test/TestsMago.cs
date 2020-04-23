@@ -54,6 +54,7 @@ namespace TestsMago
             p4.EquipDeffEquip(deff6);
             p4.EquipDeffEquip(deff7);
         }
+        
         [TestCase]
 
         public void IsGetAttackValueRight()
