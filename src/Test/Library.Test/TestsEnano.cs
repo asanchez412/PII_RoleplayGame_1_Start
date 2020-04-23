@@ -5,7 +5,6 @@ using Elfos;
 using ItemsDeAtaque;
 using ItemsDeDefensa;
 
-
 namespace TestsEnano
 {
     [TestFixture]
@@ -15,6 +14,7 @@ namespace TestsEnano
         public void Init()
         {
             Enano p1 = new Enano("Jorginho",10,100,5);
+            Enano p2 = new Enano("Pepinho",8,100,6);
             ItemAtaque off1 = new ItemAtaque("Hacha","Hacha de dos mertros", 8);
             ItemAtaque off2 = new ItemAtaque("Espada","Espada de dos manos", 7);
             ItemAtaque off3 = new ItemAtaque("Cuchillo","Rápido y letal", 5);
@@ -32,6 +32,9 @@ namespace TestsEnano
             p1.EquipDeffEquip(deff3);
             p1.EquipDeffEquip(deff7);
 
+            p2.EquipOffEquip(off2);
+            p2.EquipDeffEquip(deff5);
+
         }
         [TestCase]
 
@@ -39,9 +42,15 @@ namespace TestsEnano
         {
             Assert.AreEqual(p1.GetAttackValue(), 23);
         }
+        [TestCase]
         public void IsGetDeffValueRight()
         {
             Assert.AreEqual(p1.GetDeffValue(), 21);
+        }
+        [TestCase]
+        public void IsAtacarEnanoRight()
+        {
+            Assert.AreEqual(p1.AtacarEnano(p2), $"El jugador {p2.Name} recibe 14 puntos de daño");
         }
     }
 }

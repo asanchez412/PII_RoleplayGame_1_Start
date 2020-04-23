@@ -116,55 +116,64 @@ namespace Enanos
             return result + this.Armor;
         }
 
-        public void AtacarEnano(Enano p1)
+        public string AtacarEnano(Enano p1)
         {
-            int damage = this.GetAttackValue();
-            int damageReceived = 0;
-
-            damageReceived = this.GetAttackValue() - p1.GetDeffValue();
-
-            if (damageReceived >= 0)
-            {
-                p1.Health = p1.Health - damageReceived;
-                Console.WriteLine("El jugador {0} recibe {1} puntos de daño", p1.Name, damageReceived);
-            }
-            else
-            {
-                Console.WriteLine("El jugador {0} no recibe daño.", p1.Name);
-            }
-        }
-        public void AtacarMago(Mago p1)
-        {
-            int damage = this.GetAttackValue();
-            int damageReceived = 0;
-
-            damageReceived = this.GetAttackValue() - p1.GetDeffValue();
-
-            if (damageReceived >= 0)
-            {
-                p1.Health = p1.Health - damageReceived;
-                Console.WriteLine("El jugador {0} recibe {1} puntos de daño", p1.Name, damageReceived);
-            }
-            else
-            {
-                Console.WriteLine("El jugador {0} no recibe daño.", p1.Name);
-            }
-        }
-        public void AtacarElfo(Elfo p1)
-        {
-            int damage = this.GetAttackValue();
             int damageReceived = 0;
 
             damageReceived = this.GetAttackValue() - p1.GetDeffValue();
 
             if (damageReceived > 0)
             {
+                string log = string.Empty;
                 p1.Health = p1.Health - damageReceived;
-                Console.WriteLine("El jugador {0} recibe {1} puntos de daño", p1.Nickname, damageReceived);
+                log = $"El jugador {p1.Name} recibe {damageReceived} puntos de daño";
+                return log;
             }
             else
             {
-                Console.WriteLine("El jugador {0} no recibe daño.", p1.Nickname);
+                string log = string.Empty;
+                log = $"El jugador {p1.Name} no recibe daño.";
+                return log;
+            }
+        }
+        public string AtacarMago(Mago p1)
+        {
+            int damageReceived = 0;
+
+            damageReceived = this.GetAttackValue() - p1.GetDeffValue();
+
+            if (damageReceived > 0)
+            {
+                string log = string.Empty;
+                p1.Health = p1.Health - damageReceived;
+                log = $"El jugador {p1.Name} recibe {damageReceived} puntos de daño";
+                return log;
+            }
+            else
+            {
+                string log = string.Empty;
+                log = $"El jugador {p1.Name} no recibe daño.";
+                return log;
+            }
+        }
+        public string AtacarElfo(Elfo p1)
+        {
+            int damageReceived = 0;
+
+            damageReceived = this.GetAttackValue() - p1.GetDeffValue();
+
+            if (damageReceived > 0)
+            {
+                string log = string.Empty;
+                p1.Health = p1.Health - damageReceived;
+                log = $"El jugador {p1.Nickname} recibe {damageReceived} puntos de daño";
+                return log;
+            }
+            else
+            {
+                string log = string.Empty;
+                log = $"El jugador {p1.Nickname} no recibe daño.";
+                return log;
             }
 
         }
