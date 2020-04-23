@@ -5,18 +5,17 @@ using Elfos;
 using ItemsDeAtaque;
 using ItemsDeDefensa;
 
-namespace TestsEnano
+namespace TestsElfo
 {
-    [TestFixture]
-    public class TestsDeEnano
+    public class TestsDeElfo
     {
         [SetUp]
-        public void SetUp()
+        public void Setup()
         {
-            Enano p1 = new Enano("Jorginho", 100, 10, 5);
-            Enano p2 = new Enano("Pepinho", 100, 8, 6);
+            Elfo p1 = new Elfo("Pablinho", 100, 7, 5);
+            Enano p2 = new Enano("Jorginho", 100, 10, 5);
             Mago p3 = new Mago("Dainamo", 100, 6, 3);
-            Elfo p4 = new Elfo("Pablinho", 100, 7, 5);
+            Elfo p4 = new Elfo("Ronaldinho", 100, 10, 4);
             ItemAtaque off1 = new ItemAtaque("Hacha","Hacha de dos mertros", 8);
             ItemAtaque off2 = new ItemAtaque("Espada","Espada de dos manos", 7);
             ItemAtaque off3 = new ItemAtaque("Cuchillo","Rápido y letal", 5);
@@ -29,10 +28,8 @@ namespace TestsEnano
             ItemDefensa deff7 = new ItemDefensa("Pantalones de cuero","Ligeros", 3);
 
             p1.EquipOffEquip(off1);
-            p1.EquipOffEquip(off3);
-            p1.EquipDeffEquip(deff1);
+            p1.EquipOffEquip(off2);
             p1.EquipDeffEquip(deff6);
-            p1.EquipDeffEquip(deff3);
             p1.EquipDeffEquip(deff7);
 
             p2.EquipOffEquip(off2);
@@ -48,27 +45,27 @@ namespace TestsEnano
             p4.EquipDeffEquip(deff6);
             p4.EquipDeffEquip(deff7);
         }
-        [TestCase]
+        [Test]
         public void IsGetAttackValueRight()
         {
-            Assert.AreEqual(p1.GetAttackValue(), 23);
+            Assert.AreEqual(p1.GetAttackValue(), 22);
         }
-        [TestCase]
+        [Test]
         public void IsGetDeffValueRight()
         {
-            Assert.AreEqual(p1.GetDeffValue(), 21);
+            Assert.AreEqual(p1.GetDeffValue(), 15);
         }
-        [TestCase]
+        [Test]
         public void IsAtacarEnanoRight()
         {
             Assert.AreEqual(p1.AtacarEnano(p2), $"El jugador {p2.Name} recibe 14 puntos de daño");
         }
-        [TestCase]
+        [Test]
         public void IsAtacarMagoRight()
         {
-            Assert.AreEqual(p1.AtacarMago(p3), $"El jugador {p3.Name} recibe 12 puntos de daño");
+            Assert.AreEqual(p1.AtacarMago(p3), $"El jugador {p3.Name} recibe 13 puntos de daño");
         }
-        [TestCase]
+        [Test]
         public void IsAtacarElfoRight()
         {
             Assert.AreEqual(p1.AtacarElfo(p4), $"El jugador {p4.Nickname} recibe 8 puntos de daño");
