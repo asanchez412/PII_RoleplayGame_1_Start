@@ -71,7 +71,7 @@ namespace Enanos
             }
         }
         private IList<ItemAtaque> offEquip = new List<ItemAtaque>();
-        private void AddStep(ItemAtaque itemAtaque)
+        private void EquipOffEquip(ItemAtaque itemAtaque)
         {
             if (offEquip.Count <= 2)
             {
@@ -79,12 +79,12 @@ namespace Enanos
             }
         }
 
-        private void RemoveStep(ItemAtaque itemAtaque)
+        private void RemoveOffEquip(ItemAtaque itemAtaque)
         {
             this.offEquip.Remove(itemAtaque);
         }
         private IList<ItemDefensa> deffEquip = new List<ItemDefensa>();
-        private void AddStep(ItemDefensa itemDefensa)
+        private void AddDeffItem(ItemDefensa itemDefensa)
         {
             if (deffEquip.Count <= 5)
             {
@@ -92,7 +92,7 @@ namespace Enanos
             }
         }
 
-        private void RemoveStep(ItemDefensa itemDefensa)
+        private void RemoveDeffItem(ItemDefensa itemDefensa)
         {
             this.deffEquip.Remove(itemDefensa);
         }
@@ -121,7 +121,7 @@ namespace Enanos
             int damage = this.GetAttackValue();
             int damageReceived = 0;
 
-            damageReceived = this.GetAttackValue() - p1.Armor;
+            damageReceived = this.GetAttackValue() - p1.GetDeffValue();
 
             if (damageReceived >= 0)
             {
@@ -138,7 +138,7 @@ namespace Enanos
             int damage = this.GetAttackValue();
             int damageReceived = 0;
 
-            damageReceived = this.GetAttackValue() - p1.Armor;
+            damageReceived = this.GetAttackValue() - p1.GetDeffValue();
 
             if (damageReceived >= 0)
             {
@@ -155,7 +155,7 @@ namespace Enanos
             int damage = this.GetAttackValue();
             int damageReceived = 0;
 
-            damageReceived = this.GetAttackValue() - p1.Armor;
+            damageReceived = this.GetAttackValue() - p1.GetDeffValue();
 
             if (damageReceived > 0)
             {

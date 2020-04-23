@@ -78,7 +78,7 @@ namespace Magos
             }
         }
         private IList<ItemAtaque> equipt = new List<ItemAtaque>();
-        private void AddStep(ItemAtaque itemAtaque)
+        private void EquipOffEquip(ItemAtaque itemAtaque)
         {
             if (equipt.Count <= 2)
             {
@@ -86,12 +86,12 @@ namespace Magos
             }
         }
 
-        private void RemoveStep(ItemAtaque itemAtaque)
+        private void RemoveOffEquip(ItemAtaque itemAtaque)
         {
             this.equipt.Remove(itemAtaque);
         }
         private IList<ItemDefensa> dequip = new List<ItemDefensa>();
-        private void AddStep(ItemDefensa itemDefensa)
+        private void AddDeffItem(ItemDefensa itemDefensa)
         {
             if (dequip.Count <= 5)
             {
@@ -99,36 +99,40 @@ namespace Magos
             }
         }
 
-        private void RemoveStep(ItemDefensa itemDefensa)
+        private void RemoveDeffItem(ItemDefensa itemDefensa)
         {
             this.dequip.Remove(itemDefensa);
         }
 
         private IList<LibrodeHechizos> equip = new List<LibrodeHechizos>();
-        private void AddStep(LibrodeHechizos librodeHechizos)
+        private void AddLibro(LibrodeHechizos librodeHechizos)
         {
             if(equip.Count <= 2)
             {
                 this.equip.Add(librodeHechizos);
             }
         }
-        private void RemoveStep(LibrodeHechizos librodeHechizos)
+        private void RemoveLibro(LibrodeHechizos librodeHechizos)
         {
             this.equip.Remove(librodeHechizos);
         }
-        public int Value()
+        public int GetAttackValue()
         {
             int resultado = 0;
-            foreach (ItemDefensa itemD in this.dequip)
+            foreach (ItemAtaque itemOff in this.equipt)
             {
-                resultado = resultado + itemD.ArmorValue;
+                resultado = resultado + itemOff.AttackValue;
+            }
+            foreach (LibrodeHechizos libro in this.equip)
+            {
+                resultado = resultado + libro.Damage;
             }
             return resultado + this.Damage;
         }
         public int GetDeffValue()
         {
             int result = 0;
-            foreach (ItemDefensa itemDeff in this.deffEquip)
+            foreach (ItemDefensa itemDeff in this.dequip)
             {
                 result = result + itemDeff.ArmorValue;
             }
@@ -181,7 +185,7 @@ namespace Magos
         {
             int damageReceived = 0;
 
-            damageReceived = this.GetAttackValue()+libro.Damage - p1.Armor;
+            damageReceived = this.GetAttackValue() + libro.Damage - p1.GetDeffValue();
 
             if (damageReceived >= 0)
             {
@@ -193,11 +197,11 @@ namespace Magos
                 Console.WriteLine("El jugador {0} no recibe daño.", p1.Name);
             }
         }
-        public void AtacarMago(Mago p1, LibrodeHechizo libro)
+        public void AtacarMago(Mago p1, LibrodeHechizos libro)
         {
             int damageReceived = 0;
 
-            damageReceived = this.GetAttackValue()+libro.Damage - p1.Armor;
+            damageReceived = this.GetAttackValue()+libro.Damage - p1.GetDeffValue();
 
             if (damageReceived >= 0)
             {
@@ -213,7 +217,7 @@ namespace Magos
         {
             int damageReceived = 0;
 
-            damageReceived = this.GetAttackValue()+libro.Damage - p1.Armor;
+            damageReceived = this.GetAttackValue()+libro.Damage - p1.GetDeffValue();
 
             if (damageReceived > 0)
             {

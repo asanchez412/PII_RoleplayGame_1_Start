@@ -66,7 +66,7 @@ namespace Elfos
         }
 
         private IList<ItemAtaque> offEquip = new List<ItemAtaque>();
-        private void AddStep(ItemAtaque itemAtaque)
+        private void EquipOffEquip(ItemAtaque itemAtaque)
         {
             if (offEquip.Count <= 2)
             {
@@ -74,12 +74,12 @@ namespace Elfos
             }
         }
 
-        private void RemoveStep(ItemAtaque itemAtaque)
+        private void RemoveOffEquip(ItemAtaque itemAtaque)
         {
             this.offEquip.Remove(itemAtaque);
         }
         private IList<ItemDefensa> deffEquip = new List<ItemDefensa>();
-        private void AddStep(ItemDefensa itemDefensa)
+        private void AddDeffItem(ItemDefensa itemDefensa)
         {
             if (deffEquip.Count <= 5)
             {
@@ -87,7 +87,7 @@ namespace Elfos
             }
         }
 
-        private void RemoveStep(ItemDefensa itemDefensa)
+        private void RemoveDeffItem(ItemDefensa itemDefensa)
         {
             this.deffEquip.Remove(itemDefensa);
         }
@@ -114,7 +114,7 @@ namespace Elfos
         {
             int damage = this.GetAttackValue();
 
-            int damageRecived = this.GetAttackValue() - p1.Armor;
+            int damageRecived = this.GetAttackValue() - p1.GetDeffValue();
 
             if (p1.health > 0)
             {
@@ -126,7 +126,7 @@ namespace Elfos
         {
             int damage = this.GetAttackValue();
 
-            int damageRecived = this.GetAttackValue() - p1.Armor;
+            int damageRecived = this.GetAttackValue() - p1.GetDeffValue();
 
             if (p1.Health > 0)
             {
@@ -138,7 +138,7 @@ namespace Elfos
         {
             int damage = this.GetAttackValue();
 
-            int damageRecived = this.GetAttackValue() - p1.Armor;
+            int damageRecived = this.GetAttackValue() - p1.GetDeffValue();
 
             if (p1.Health > 0)
             {
