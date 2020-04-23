@@ -65,14 +65,6 @@ namespace Elfos
             }
         }
 
-        //public int ObtenerValorTotalDeDaño()
-        //{
-          //  return Damage;
-        //}
-        //public int ObtenerValorTotalDeDefensa()
-        //{
-          //  return Armor;
-        //}
         private IList<ItemAtaque> offEquip = new List<ItemAtaque>();
         private void AddStep(ItemAtaque itemAtaque)
         {
